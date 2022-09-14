@@ -3,7 +3,7 @@
  * @author roudet
  */
  
-public class Pamplemousse {
+public class Pamplemousse implements Fruit{
     private double prix;
     private String origine;
 	
