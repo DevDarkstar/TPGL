@@ -5,7 +5,7 @@ package fr.ufrsciencestech.panier;
  * @author roudet
  */
  
-public class Orange {
+public class Orange implements Fruit{
     private double prix;
     private String origine;
 	
@@ -28,6 +28,7 @@ public class Orange {
             this.origine = origine;   
     }
 
+    @Override
     public double getPrix(){
 	return prix;
     }
@@ -36,6 +37,7 @@ public class Orange {
 	this.prix=prix;
     }
 
+    @Override
     public String getOrigine(){
 	return origine;
     }
@@ -58,6 +60,7 @@ public class Orange {
         return false;
     }
 
+    @Override
     public boolean isSeedless() {  //predicat indiquant qu'une orange a des pepins
         return false;
     }

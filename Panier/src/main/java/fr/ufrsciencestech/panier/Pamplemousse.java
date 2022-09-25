@@ -5,7 +5,7 @@ package fr.ufrsciencestech.panier;
  * @author roudet
  */
  
-public class Pamplemousse{
+public class Pamplemousse implements Fruit{
     private double prix;
     private String origine;
 	
@@ -28,6 +28,7 @@ public class Pamplemousse{
             this.origine = origine;   
     }
 
+    @Override
     public double getPrix(){
 	return prix;
     }
@@ -36,6 +37,7 @@ public class Pamplemousse{
 	this.prix=prix;
     }
 
+    @Override
     public String getOrigine(){
 	return origine;
     }
@@ -58,6 +60,7 @@ public class Pamplemousse{
         return false;
     }
 
+    @Override
     public boolean isSeedless() {  //predicat indiquant qu'un pamplemousse a des pepins
         return false;
     }
