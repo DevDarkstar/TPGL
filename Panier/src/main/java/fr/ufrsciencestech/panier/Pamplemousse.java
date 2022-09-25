@@ -9,12 +9,20 @@ public class Pamplemousse implements Fruit{
     private double prix;
     private String origine;
 	
+    /**
+     * Constructeur par défaut
+     */
     public Pamplemousse() 
     {
         this.prix = 1.8;  //prix en euros
         this.origine="Afrique du Sud";
     }
     
+    /**
+     * Constructeur standard
+     * @param prix prix du Pamplemousse
+     * @param origine origine du Pamplemousse
+     */
     public Pamplemousse(double prix, String origine) 
     {
 	if(prix < 0)
@@ -28,29 +36,54 @@ public class Pamplemousse implements Fruit{
             this.origine = origine;   
     }
 
+    /**
+     * accesseur du prix du Pamplemousse
+     * @return prix du Pamplemousse
+     */
     @Override
     public double getPrix(){
 	return prix;
     }
 
+    /**
+     * mutateur du prix du Pamplemousse
+     * @param prix nouveau prix du Pamplemousse
+     */
     public void setPrix(double prix){
 	this.prix=prix;
     }
 
+    /**
+     * accesseur de l'origine du Pamplemousse
+     * @return origine du Pamplemousse
+     */
     @Override
     public String getOrigine(){
 	return origine;
     }
  
+    /**
+     * mutateur de l'origine du Pamplemousse
+     * @param origine nouvelle origine du Pamplemousse
+     */
     public void setOrigine(String origine){
 	this.origine=origine;
     }
 
+    /**
+     * descriptif du Pamplemousse (son prix, son origine)
+     * @return descriptif du Pamplemousse sous la forme d'une chaîne de caractère
+     */
     @Override
     public String toString(){
         return "Pamplemousse de " + origine + " a " + prix + " euros";
     }
 
+    /**
+     * prédicat pour tester si 2 Pamplemousses sont équivalents
+     * @param o Objet à comparer
+     * @return <strong>true</strong> si les deux Pamplemousses sont identiques <strong>false</strong> sinon
+     */
     @Override
     public boolean equals(Object o){  //predicat pour tester si 2 pamplemousses sont equivalents
         if(o != null && getClass() == o.getClass()){
@@ -60,6 +93,10 @@ public class Pamplemousse implements Fruit{
         return false;
     }
 
+    /**
+     * predicat indiquant qu'un pamplemousse a des pepins
+     * @return <strong>true</strong> si le Pamplemouuse a des pépins <strong>false</strong> sinon
+     */
     @Override
     public boolean isSeedless() {  //predicat indiquant qu'un pamplemousse a des pepins
         return false;

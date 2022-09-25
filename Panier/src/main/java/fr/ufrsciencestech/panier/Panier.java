@@ -15,6 +15,10 @@ public class Panier {
         this.contenanceMax = contenanceMax;
     }
 
+    /**
+     * affichage de ce qui est contenu dans le panier : liste des fruits présents
+     * @return le contenu du panier avec le nom des fruits, leur origine ainsi que leur prix
+     */
     @Override
     public String toString(){  //affichage de ce qui est contenu dans le panier : liste des fruits presents
         String s = "Votre panier contient:\n";
@@ -26,27 +30,53 @@ public class Panier {
     }
 
     //groupe 2
+    /**
+     * accesseur de la liste des fruits du panier
+     * @return une Arraylist de Fruit 
+     */
     public ArrayList<Fruit> getFruits() {  //accesseur du premier attribut
        return this.fruits;
     }
 
+    /**
+     * mutateur de la liste des fruits du panier
+     * @param fruits l'arraylist de Fruit à affecter à l'attribut fruits de la classe
+     */
     public void setFruits(ArrayList<Fruit> fruits) { //modificateur du premier attribut
         this.fruits = fruits;
     }
 
+    /**
+     * accesseur retournant la taille allouée pour l'attibut fruits
+     * @return la taille du panier
+     */
     public int getTaillePanier(){  //accesseur retournant la taille allouee pour l'attibut fruits
         return this.fruits.size();
     }
 
+    /**
+     * accesseur de la contenance maximale du panier
+     * @return la contenance maximale du panier
+     */
     public int getContenanceMax(){  //accesseur du second attribut
         return this.contenanceMax;
     }
 
     //groupe 3
+    /**
+     * accesseur retournant un fruit contenu dans le panier
+     * @param i index du Fruit dans le panier
+     * @return un Fruit ou null s'il n'y a pas de Fruit à cet emplacement
+     */
     public Fruit getFruit(int i){  //accesseur retournant le fruit contenu dans le panier a l'emplacement n°i ou null s'il n'y a rien a cet emplacement
         return this.fruits.get(i);
     }
 
+    /**
+     * modificateur du fruit contenu dans le panier
+     * @param i index du Fruit dans le panier
+     * @param f un Fruit qui remplacera celui situé à l'indice i
+     */
     public void setFruit(int i, Fruit f){  //modificateur du fruit contenu dans le panier a l'emplacement n°i par f (s'il y a bien deja un fruit a cet emplacement, ne rien faire sinon)
         if(i < 0 || i >= this.getTaillePanier())
             return;
@@ -54,15 +84,28 @@ public class Panier {
             this.fruits.set(i, f);
     }
 
+    /**
+     * predicat indiquant que le panier est vide
+     * @return <strong>true</strong> si le panier est vide <strong>false</strong> sinon
+     */
     public boolean estVide(){  //predicat indiquant que le panier est vide
         return this.fruits.isEmpty();
     }
 
+    /**
+     * predicat indiquant que le panier est plein
+     * @return <strong>true</strong> si le panier est plein <strong>false</strong> sinon
+     */
     public boolean estPlein(){  //predicat indiquant que le panier est plein
         return this.getTaillePanier() == this.getContenanceMax();
     }
 
     //groupe 4
+    /**
+     * ajoute un Fruit dans le panier
+     * @param o Fruit à ajouter au panier
+     * @throws PanierPleinException 
+     */
     public void ajout(Fruit o) throws PanierPleinException
     {
         //Si le panier est plein, on lève une exception
@@ -75,6 +118,10 @@ public class Panier {
 
 
     //groupe 5
+    /**
+     * retire le dernier fruit du panier si celui-ci n'est pas vide
+     * @throws PanierVideException 
+     */
     public void retrait() throws PanierVideException{ //retire le dernier fruit du panier si celui-ci n'est pas vide
         if(this.fruits.isEmpty())
             throw new PanierVideException();
@@ -83,6 +130,10 @@ public class Panier {
     }
 
     //groupe 6
+    /**
+     * calcule le prix du panier par addition des prix de tous les fruits contenus dedans
+     * @return prix total du panier
+     */
     public double getPrix(){  //calcule le prix du panier par addition des prix de tous les fruits contenus dedans
         double prix = 0;
         for(Fruit f: this.fruits)
@@ -93,6 +144,10 @@ public class Panier {
     }
 
     //groupe 7
+    /**
+     * supprime du panier tous les fruits provenant du pays origine
+     * @param origine pays à boycotter
+     */
     public void boycotteOrigine(String origine){  //supprime du panier tous les fruits provenant du pays origine
         Iterator<Fruit> it = this.fruits.iterator();
         while(it.hasNext())
@@ -103,6 +158,11 @@ public class Panier {
     }
 
     //groupe 8
+    /**
+     * predicat pour tester si 2 paniers sont equivalents : s'ils contiennent exactement les memes fruits(prix, origine)
+     * @param o Object à comparer
+     * @return <strong>true</strong> si les deux paniers sont identiques <strong>false</strong> sinon
+     */
     @Override
     public boolean equals(Object o){  ///predicat pour tester si 2 paniers sont equivalents : s'ils contiennent exactement les memes fruits
         //Si l'objet n'est pas de type Panier
