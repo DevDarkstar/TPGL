@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this template
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <!-- ===== Déclaration des références ===== -->
+    <bean id="Controleur" class="fr.ufrsciencestech.panier.Controleur"></bean>
+    <bean id="VueG" class="fr.ufrsciencestech.panier.VueGSwing"></bean>
+    
+    <!-- ===== Utilisation des références ===== -->
+    <bean id="MVC" class="fr.ufrsciencestech.panier.TestMVC">
+        <property name="vueg" ref="VueG"/>
+        <property name="controleur" ref="Controleur"/>
+    </bean>
+</beans>
+

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package fr.ufrsciencestech.panier;
+import java.awt.Dimension;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
@@ -13,14 +14,22 @@ import javax.swing.JFrame;
  *
  * @author rl109350
  */
-public class VueGSwing extends JFrame implements Observer{
+public class VueGSwing extends JFrame implements VueGraphique{
 
     /**
      * Creates new form VueGSwing
      */
     public VueGSwing() {
         initComponents();
+        //position centrée de la fenêtre
+        this.setLocationRelativeTo(null);
+        //dimensions
+        this.setPreferredSize(new Dimension(500,500));
+        //titre
+        this.setTitle("Panier");
+        //définition d'un nom pour les deux boutons de la fenêtre
         this.inc.setName("Plus");
+        this.dec.setName("Moins");
         this.pack();
         this.setVisible(true);
     }
@@ -46,6 +55,7 @@ public class VueGSwing extends JFrame implements Observer{
         this.affiche = affiche;
     }
     
+    @Override
     public void ajouteControleur(Controleur c)
     {
         this.getInc().addActionListener(c);
@@ -76,11 +86,6 @@ public class VueGSwing extends JFrame implements Observer{
         getContentPane().setLayout(new java.awt.GridLayout(3, 1));
 
         inc.setText("+");
-        inc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                incActionPerformed(evt);
-            }
-        });
         getContentPane().add(inc);
 
         affiche.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -91,10 +96,6 @@ public class VueGSwing extends JFrame implements Observer{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void incActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_incActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,6 +126,7 @@ public class VueGSwing extends JFrame implements Observer{
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new VueGSwing().setVisible(true);
             }

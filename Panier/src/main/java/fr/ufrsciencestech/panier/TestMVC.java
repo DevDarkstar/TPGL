@@ -4,42 +4,72 @@
  */
 package fr.ufrsciencestech.panier;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 /**
  *
  * @author rl109350
  */
 public class TestMVC {
     
-    private Panier p;
-    private VueGSwing vueGSwing;
-    private VueConsole vueConsole;
+    //private Panier p;
+    //private VueConsole vueConsole;
     private Controleur controleur;
+    private VueGraphique vueg;
     
     public TestMVC()
     {
-        p = new Panier(10);
-        vueGSwing = new VueGSwing();
+        //sans SpringIoC
+        /*p = new Panier(5);
         vueConsole = new VueConsole();
         controleur = new Controleur();
         
         controleur.setPanier(p);    //setModele
-        p.addObserver(vueGSwing);
+        p.addObserver(vueg);
         p.addObserver(vueConsole);
-        vueGSwing.ajouteControleur(controleur);
+
+        vueg.ajouteControleur(controleur);*/
     }
     
-    public VueGSwing getVueGSwing()
-    {
-        return this.vueGSwing;
+    public VueGraphique getVueg() //pour java bean
+    { 
+        return vueg; 
     }
     
-    public void setVueGSwing(VueGSwing vueGSwing)
-    {
-        this.vueGSwing = vueGSwing;
+    public void setVueg(VueGraphique vueg) //pour java bean
+    { 
+        this.vueg = vueg; 
     }
+    
+    public Controleur getControleur() {
+        return controleur;
+    }
+
+    public void setControleur(Controleur controleur) {
+        this.controleur = controleur;
+    }
+    
     
     public static void main(String[] args)
     {
-        TestMVC test = new TestMVC();
+        //Sans SpringIoC
+        //TestMVC test = new TestMVC();
+        
+        //Avec SpringIoC
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+        TestMVC test = (TestMVC)context.getBean("MVC");
+        
+        test.setControleur( (Controleur)context.getBean("Controleur") );  //SpringIoC
+        test.setVueg( (VueGraphique)context.getBean("VueG") );   //SpringIoC
+         
+        Panier p = new Panier(5); 
+        test.getControleur().setPanier(p);  
+        
+        p.addObserver(test.getVueg());
+        test.getVueg().ajouteControleur(test.getControleur());
+        
+        VueConsole vuec = new VueConsole();
+        p.addObserver(vuec);
     }
 }
