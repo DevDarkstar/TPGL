@@ -5,13 +5,13 @@ import java.util.*;
  *
  * @author roudet
  */
-public class Panier {
+public class Panier extends Observable{
     private ArrayList<Fruit> fruits;  //attribut pour stocker les fruits
-    private int contenanceMax;        //nb maximum d'oranges que peut contenir le panier
+    private final int contenanceMax;        //nb maximum d'oranges que peut contenir le panier
 
     //groupe 1
     public Panier(int contenanceMax){  //initialise un panier vide ayant une certaine contenance maximale (precisee en parametre)
-        this.fruits = new ArrayList<Fruit>();
+        this.fruits = new ArrayList<>();
         this.contenanceMax = contenanceMax;
     }
 
@@ -114,6 +114,9 @@ public class Panier {
         //sinon on ajoute le fruit au panier
         else
            this.fruits.add(o);
+        
+        setChanged();
+        notifyObservers(this.getTaillePanier());
     }
 
 
@@ -127,6 +130,9 @@ public class Panier {
             throw new PanierVideException();
         else
             this.fruits.remove(this.getTaillePanier()-1);
+        
+        setChanged();
+        notifyObservers(this.getTaillePanier());
     }
 
     //groupe 6

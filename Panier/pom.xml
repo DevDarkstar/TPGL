@@ -56,7 +56,7 @@
                 <archive>
                     <manifest>
                         <addClasspath>true</addClasspath>
-                        <mainClass>fr.ufrsciencestech.panier.Panier</mainClass> <!-- classe contenant le main -->
+                        <mainClass>fr.ufrsciencestech.panier.TestMVC</mainClass> <!-- classe contenant le main -->
                     </manifest>
                 </archive>
             </configuration>
